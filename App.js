@@ -9,15 +9,15 @@ import {
 } from 'react-native';
 
 import TodoInsert from './components/TodoInsert';
+import TodoList from './components/TodoList';
+
 const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.appTitle}>Hello TodoList!</Text>
       <View style={styles.card}>
         <TodoInsert />
-        <ScrollView>
-          <Text>TodoList</Text>
-        </ScrollView>
+        <TodoList />
       </View>
     </SafeAreaView>
   );
