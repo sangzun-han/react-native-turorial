@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import * as Location from 'expo-location';
 import WeatherInfo from './components/WeatherInfo';
 import UnitsPicker from './components/UnitsPicker';
+import ReloadIcon from './components/ReloadIcon';
 import { colors } from './utils/index';
 
 const WEATHER_API_KEY = '6a3b98b3efbdc379f189204997e63cce';
@@ -42,7 +43,7 @@ export default function App() {
         setErrorMessage(result.message);
       }
 
-      alert(`Latitude : ${latitude}, Longitude: ${longitude}`);
+      // alert(`Latitude : ${latitude}, Longitude: ${longitude}`);
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -56,6 +57,7 @@ export default function App() {
             unitsSystem={unitsSystem}
             setUnitsSystem={setUnitsSystem}
           />
+          <ReloadIcon load={load} />
           <WeatherInfo currentWeather={currentWeather} />
         </View>
       </View>
