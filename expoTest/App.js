@@ -5,6 +5,7 @@ import * as Location from 'expo-location';
 import WeatherInfo from './components/WeatherInfo';
 import UnitsPicker from './components/UnitsPicker';
 import ReloadIcon from './components/ReloadIcon';
+import WeatherDetails from './components/WeatherDetails';
 import { colors } from './utils/index';
 
 const WEATHER_API_KEY = '6a3b98b3efbdc379f189204997e63cce';
@@ -60,18 +61,24 @@ export default function App() {
           <ReloadIcon load={load} />
           <WeatherInfo currentWeather={currentWeather} />
         </View>
+        <WeatherDetails
+          currentWeather={currentWeather}
+          unitsSystem={unitsSystem}
+        />
       </View>
     );
   } else if (errorMessage) {
     return (
       <View style={styles.container}>
-        <Text>{errorMessage}</Text>
+        <ReloadIcon load={load} />
+        <Text style={{ textAlign: 'center' }}>{errorMessage}</Text>
         <StatusBar style='auto' />
       </View>
     );
   } else {
     return (
       <View style={styles.container}>
+        <ReloadIcon load={load} />
         <ActivityIndicator size='large' color={colors.PRIMARY_COLOR} />
         <StatusBar style='auto' />
       </View>
@@ -82,7 +89,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
   },
   main: {
