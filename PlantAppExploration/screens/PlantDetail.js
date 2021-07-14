@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-const PlanDetail = () => {
+const PlantDetail = () => {
   return (
     <View>
       <Text>plan</Text>
@@ -9,4 +9,4 @@ const PlanDetail = () => {
   );
 };
 
-export default PlanDetail;
+export default PlantDetail;

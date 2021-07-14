@@ -3,7 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 
 // screen
-import {Home, PlanDetail} from './screens/';
+import {Home, PlantDetail} from './screens/';
 
 // tabs
 import Tabs from './navigation/tabs';
@@ -22,7 +22,7 @@ const App = () => {
         {/* Screens */}
         <Stack.Screen
           name="PlantDetail"
-          component={PlanDetail}
+          component={PlantDetail}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

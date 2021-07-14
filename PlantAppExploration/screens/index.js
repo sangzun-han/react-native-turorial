@@ -1,4 +1,4 @@
 import Home from './Home';
-import PlanDetail from './PlanDetail';
+import PlantDetail from './PlantDetail';
 
-export {Home, PlanDetail};
+export {Home, PlantDetail};
