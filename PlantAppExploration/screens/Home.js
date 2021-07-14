@@ -194,7 +194,7 @@ const Home = () => {
               <TouchableOpacity
                 style={{
                   flex: 1,
-                  marginTop: SIZES,
+                  marginTop: SIZES.font,
                 }}
                 onPress={() => {
                   console.log('식물 클릭');
