@@ -137,6 +137,7 @@ const PlantDetail = ({navigation}) => {
             />
           </TouchableOpacity>
         </View>
+
         <View style={{flexDirection: 'row', marginTop: '10%'}}>
           <View style={{flex: 1}}>
             <Text style={{color: COLORS.white, ...FONTS.largeTitle}}>

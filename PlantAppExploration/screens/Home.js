@@ -90,7 +90,7 @@ const Home = ({navigation}) => {
           <Text style={{color: COLORS.white, ...FONTS.body4}}>{item.name}</Text>
         </View>
 
-        <View
+        <TouchableOpacity
           style={{
             position: 'absolute',
             top: '15%',
@@ -107,7 +107,7 @@ const Home = ({navigation}) => {
               height: 20,
             }}
           />
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }
