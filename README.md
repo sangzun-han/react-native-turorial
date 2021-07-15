@@ -4,8 +4,10 @@
 
 # react-native-cli
 [travelonboardingapp](https://github.com/sangzun-han/react-native-turorial/tree/main/TravelOnBoardingApp#:~:text=10%20hours%20ago-,README.md,-Update%20README.md)
-- m1 react-native cli 설정방법
+<br>
+[plantapp](https://github.com/sangzun-han/react-native-turorial/tree/main/PlantAppExploration)
 
+- m1 react-native cli 설정방법
 ```
 1.xcode 설치
 2.iterm2 설치
