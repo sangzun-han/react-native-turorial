@@ -1,3 +1,9 @@
+## 참고자료
+
+<a href="https://www.uplabs.com/posts/splash-screen-mobile-ui-5">사이트</a>
+<br>
+<img width="300" alt="스크린샷 2021-07-16 오후 10 22 51" src="https://user-images.githubusercontent.com/57563053/125954881-b26b7b06-df43-4c98-a972-13c0bf67bb5a.png">
+
 ## 실행화면
 
 ---
