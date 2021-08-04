@@ -1,11 +1,12 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {Image, TouchableOpacity} from 'react-native';
+import {Image, Touchable, TouchableOpacity} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 
 //Screens
 import {Onboarding, DestinationDetail} from './screens';
+import {COLORS, icons, SIZES} from './constants';
 
 const theme = {
   ...DefaultTheme,
@@ -22,7 +23,31 @@ const App = () => {
     <NavigationContainer theme={theme}>
       <Stack.Navigator initialRouteName={'Onboarding'}>
         {/* screen */}
-        <Stack.Screen name="Onboarding" component={Onboarding} />
+        <Stack.Screen
+          name="Onboarding"
+          component={Onboarding}
+          options={{
+            title: null,
+            headerStyle: {
+              backgroundColor: COLORS.white,
+            },
+            headerLeft: null,
+            headerRight: () => (
+              <TouchableOpacity
+                style={{marginRight: SIZES.padding}}
+                onPress={() => console.log('Pressed')}>
+                <Image
+                  source={icons.barMenu}
+                  resizeMode="contain"
+                  style={{
+                    width: 25,
+                    height: 25,
+                  }}
+                />
+              </TouchableOpacity>
+            ),
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
