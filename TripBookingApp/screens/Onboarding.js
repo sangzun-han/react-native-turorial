@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {COLORS, FONTS, SIZES, images} from '../constants';
-const Onboarding = () => {
+const Onboarding = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -48,7 +48,7 @@ const Onboarding = () => {
               justifyContent: 'center',
             },
           ]}
-          onPress={() => console.log('Button Pressed')}>
+          onPress={() => navigation.navigate('Home')}>
           <LinearGradient
             style={{
               height: '100%',
