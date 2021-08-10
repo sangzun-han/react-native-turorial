@@ -1,15 +1,14 @@
-import 'react-native-gesture-handler';
 import React from 'react';
-import {Image, Touchable, TouchableOpacity} from 'react-native';
+import {Image, TouchableOpacity} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 
-//Screens
-import {Onboarding, DestinationDetail} from './screens';
-import {COLORS, icons, SIZES} from './constants';
-
-// Tabs
+// screens
+import {Onboarding, DestinationDetail} from './screens/';
+// extra screens
 import Tabs from './navigation/tabs';
+
+import {icons, COLORS, SIZES} from './constants';
 
 const theme = {
   ...DefaultTheme,
@@ -25,7 +24,7 @@ const App = () => {
   return (
     <NavigationContainer theme={theme}>
       <Stack.Navigator initialRouteName={'Onboarding'}>
-        {/* screen */}
+        {/* Screens */}
         <Stack.Screen
           name="Onboarding"
           component={Onboarding}
@@ -51,28 +50,33 @@ const App = () => {
             ),
           }}
         />
+
         <Stack.Screen
           name="DestinationDetail"
           component={DestinationDetail}
           options={{headerShown: false}}
         />
+
         {/* Tabs */}
         <Stack.Screen
           name="Home"
           component={Tabs}
           options={{
-            titile: null,
+            title: null,
             headerStyle: {
               backgroundColor: COLORS.white,
             },
             headerLeft: ({onPress}) => (
               <TouchableOpacity
-                style={{margintLeft: SIZES.padding}}
+                style={{marginLeft: SIZES.padding}}
                 onPress={onPress}>
                 <Image
                   source={icons.back}
                   resizeMode="contain"
-                  style={{width: 25, height: 25}}
+                  style={{
+                    width: 25,
+                    height: 25,
+                  }}
                 />
               </TouchableOpacity>
             ),

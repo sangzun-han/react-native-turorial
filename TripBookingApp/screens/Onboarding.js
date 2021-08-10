@@ -8,8 +8,12 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {COLORS, FONTS, SIZES, images} from '../constants';
+
+import {images, COLORS, FONTS, SIZES} from '../constants';
+
 const Onboarding = ({navigation}) => {
+  // Render
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -33,10 +37,11 @@ const Onboarding = ({navigation}) => {
               textAlign: 'center',
               ...FONTS.body3,
             }}>
-            Easy solutin to buy tickets for your travel, business trips,
-            transportation, loading and culinary
+            Easy solution to buy tickets for your travel, business trips,
+            transportation, lodging and culinary.
           </Text>
         </View>
+
         <TouchableOpacity
           style={[
             styles.shadow,
@@ -59,7 +64,7 @@ const Onboarding = ({navigation}) => {
             }}
             colors={['#46aeff', '#5884ff']}
             start={{x: 0, y: 0}}
-            end={{x: 1, y: 1}}>
+            end={{x: 1, y: 0}}>
             <Text style={{color: COLORS.white, ...FONTS.h3}}>Start !</Text>
           </LinearGradient>
         </TouchableOpacity>
@@ -73,7 +78,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.white,
   },
-
   shadow: {
     shadowColor: '#000',
     shadowOffset: {
@@ -82,7 +86,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
+
     elevation: 5,
   },
 });
+
 export default Onboarding;

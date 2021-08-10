@@ -1,29 +1,32 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
-  View,
-  Text,
   StyleSheet,
+  View,
   Image,
+  Text,
   TouchableOpacity,
   FlatList,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import {COLORS, SIZES, images, icons, FONTS} from '../constants';
+import {images, icons, COLORS, FONTS, SIZES} from '../constants';
 
-const OptionItem = ({icon, bgColor, label, onPress}) => {
+const OptionItem = ({bgColor, icon, label, onPress}) => {
   return (
     <TouchableOpacity
       style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}
       onPress={onPress}>
       <View style={[styles.shadow, {width: 60, height: 60}]}>
         <LinearGradient
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: 15,
-          }}
+          style={[
+            {
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 15,
+              backgroundColor: 'red',
+            },
+          ]}
           colors={bgColor}
           start={{x: 0, y: 0}}
           end={{x: 0, y: 1}}>
@@ -44,10 +47,10 @@ const OptionItem = ({icon, bgColor, label, onPress}) => {
     </TouchableOpacity>
   );
 };
-const Home = ({navigation}) => {
-  // dummy data
 
-  const [destinations, setDestinations] = useState([
+const Home = ({navigation}) => {
+  // Dummy Data
+  const [destinations, setDestinations] = React.useState([
     {
       id: 0,
       name: 'Ski Villa',
@@ -70,12 +73,12 @@ const Home = ({navigation}) => {
     },
   ]);
 
-  // render
+  // Render
 
   function renderDestinations(item, index) {
-    let destinationStyle = {};
+    var destinationStyle = {};
 
-    if (index === 0) {
+    if (index == 0) {
       destinationStyle = {marginLeft: SIZES.padding};
     }
 
@@ -98,6 +101,7 @@ const Home = ({navigation}) => {
             borderRadius: 15,
           }}
         />
+
         <Text style={{marginTop: SIZES.base / 2, ...FONTS.h4}}>
           {item.name}
         </Text>
@@ -124,6 +128,7 @@ const Home = ({navigation}) => {
           }}
         />
       </View>
+
       {/* Options */}
       <View style={{flex: 1, justifyContent: 'center'}}>
         <View
@@ -137,7 +142,7 @@ const Home = ({navigation}) => {
             bgColor={['#46aeff', '#5884ff']}
             label="Flight"
             onPress={() => {
-              console.log('Filght');
+              console.log('Flight');
             }}
           />
           <OptionItem
@@ -183,17 +188,17 @@ const Home = ({navigation}) => {
           <OptionItem
             icon={icons.eat}
             bgColor={['#7cf1fb', '#4ebefd']}
-            label="Eat"
+            label="Eats"
             onPress={() => {
-              console.log('Eat');
+              console.log('Eats');
             }}
           />
           <OptionItem
             icon={icons.compass}
             bgColor={['#7be993', '#46caaf']}
-            label="Compass"
+            label="Adventure"
             onPress={() => {
-              console.log('Compass');
+              console.log('Adventure');
             }}
           />
           <OptionItem
@@ -206,6 +211,7 @@ const Home = ({navigation}) => {
           />
         </View>
       </View>
+
       {/* Destination */}
       <View style={{flex: 1}}>
         <Text
@@ -241,6 +247,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
+
     elevation: 5,
   },
 });

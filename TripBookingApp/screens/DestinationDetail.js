@@ -1,28 +1,32 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {images, COLORS, SIZES, FONTS, icons} from '../constants';
+
+import {images, icons, COLORS, FONTS, SIZES} from '../constants';
 
 const StarReview = ({rate}) => {
-  let starComponents = [];
-  let fullStar = Math.floor(rate);
-  let noStar = Math.floor(5 - rate);
-  let halfStar = 5 - fullStar - noStar;
+  var starComponents = [];
+  var fullStar = Math.floor(rate);
+  var noStar = Math.floor(5 - rate);
+  var halfStar = 5 - fullStar - noStar;
 
-  // full star
-  for (let i = 0; i < fullStar; i++) {
+  // Full Star
+  for (var i = 0; i < fullStar; i++) {
     starComponents.push(
       <Image
         key={`full-${i}`}
         source={icons.starFull}
         resizeMode="cover"
-        style={{width: 20, height: 20}}
+        style={{
+          width: 20,
+          height: 20,
+        }}
       />,
     );
   }
 
-  // half star
-  for (let i = 0; i < halfStar; i++) {
+  // Half Star
+  for (var i = 0; i < halfStar; i++) {
     starComponents.push(
       <Image
         key={`half-${i}`}
@@ -36,8 +40,8 @@ const StarReview = ({rate}) => {
     );
   }
 
-  // no star
-  for (let i = 0; i < noStar; i++) {
+  // No Star
+  for (var i = 0; i < noStar; i++) {
     starComponents.push(
       <Image
         key={`empty-${i}`}
@@ -50,6 +54,7 @@ const StarReview = ({rate}) => {
       />,
     );
   }
+
   return (
     <View style={{flexDirection: 'row', alignItems: 'center'}}>
       {starComponents}
@@ -80,6 +85,8 @@ const IconLabel = ({icon, label}) => {
 };
 
 const DestinationDetail = ({navigation}) => {
+  // Render
+
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -92,7 +99,6 @@ const DestinationDetail = ({navigation}) => {
             height: '80%',
           }}
         />
-
         <View
           style={[
             {
@@ -118,6 +124,7 @@ const DestinationDetail = ({navigation}) => {
                 }}
               />
             </View>
+
             <View
               style={{
                 marginHorizontal: SIZES.radius,
@@ -132,16 +139,20 @@ const DestinationDetail = ({navigation}) => {
 
           <View style={{marginTop: SIZES.radius}}>
             <Text style={{color: COLORS.gray, ...FONTS.body3}}>
-              Ski Villa offers simple rooms with mounts
+              Ski Villa offers simple rooms with mountain views in front of the
+              ski lift to the Ski Resort
             </Text>
           </View>
         </View>
+
+        {/* Header Buttons */}
         <View
           style={{
             position: 'absolute',
             top: 50,
             left: 20,
             right: 20,
+            //height: 50,
             flexDirection: 'row',
           }}>
           <View style={{flex: 1}}>
@@ -160,19 +171,26 @@ const DestinationDetail = ({navigation}) => {
             </TouchableOpacity>
           </View>
           <View style={{flex: 1, alignItems: 'flex-end'}}>
-            <TouchableOpacity onPress={() => console.log('Menu on pressed')}>
+            <TouchableOpacity
+              onPress={() => {
+                console.log('Menu on pressed');
+              }}>
               <Image
                 source={icons.menu}
                 resizeMode="cover"
-                style={{width: 30, height: 30}}
+                style={{
+                  width: 30,
+                  height: 30,
+                }}
               />
             </TouchableOpacity>
           </View>
         </View>
       </View>
-      {/* body */}
+
+      {/* Body */}
       <View style={{flex: 1.5}}>
-        {/* icons */}
+        {/* Icons */}
         <View
           style={{
             flexDirection: 'row',
@@ -181,10 +199,13 @@ const DestinationDetail = ({navigation}) => {
             justifyContent: 'space-between',
           }}>
           <IconLabel icon={icons.villa} label="Villa" />
+
           <IconLabel icon={icons.parking} label="Parking" />
-          <IconLabel icon={icons.wind} label="4" />
+
+          <IconLabel icon={icons.wind} label="4 °C" />
         </View>
-        {/* about */}
+
+        {/* About */}
         <View
           style={{marginTop: SIZES.padding, paddingHorizontal: SIZES.padding}}>
           <Text style={{...FONTS.h2}}>About</Text>
@@ -194,15 +215,18 @@ const DestinationDetail = ({navigation}) => {
               color: COLORS.gray,
               ...FONTS.body3,
             }}>
-            Located at the Alps width an altiutude
+            Located at the Alps with an altitude of 1,702 meters. The ski area
+            is the largest ski area in the world and is known as the best place
+            to ski. Many other facilities, such as fitness center, sauna, steam
+            room to star-rated restaurants.
           </Text>
         </View>
       </View>
 
-      {/* footer */}
+      {/* Footer */}
       <View style={{flex: 0.5, paddingHorizontal: SIZES.padding}}>
         <LinearGradient
-          style={{height: 70, width: '100%', borderRadius: 15}}
+          style={[{height: 70, width: '100%', borderRadius: 15}]}
           colors={['#edf0fc', '#d6dfff']}
           start={{x: 0, y: 0}}
           end={{x: 1, y: 0}}>
@@ -215,20 +239,25 @@ const DestinationDetail = ({navigation}) => {
               }}>
               <Text style={{...FONTS.h1}}>$1000</Text>
             </View>
+
             <TouchableOpacity
               style={{
                 width: 130,
                 height: '80%',
                 marginHorizontal: SIZES.radius,
               }}
-              onPress={() => console.log('Booking on preseed')}>
+              onPress={() => {
+                console.log('Booking on pressed');
+              }}>
               <LinearGradient
-                style={{
-                  flex: 1,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: 10,
-                }}
+                style={[
+                  {
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 10,
+                  },
+                ]}
                 colors={['#46aeff', '#5884ff']}
                 start={{x: 0, y: 0}}
                 end={{x: 1, y: 0}}>
@@ -247,17 +276,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.white,
   },
-
   shadow: {
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.35,
+    shadowOpacity: 0.25,
     shadowRadius: 3.84,
 
     elevation: 5,
   },
 });
+
 export default DestinationDetail;
