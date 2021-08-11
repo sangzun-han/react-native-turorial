@@ -1,12 +1,13 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, SafeAreaView} from 'react-native';
 
 const Home = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>Home</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
+const styles = St;
 export default Home;
