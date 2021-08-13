@@ -46,7 +46,9 @@ const ScrollableTab = ({tabList, selectedTab, onPress}) => {
 
 const ScrollableCard = ({navigation, productList}) => {
   const renderCard = ({item}) => (
-    <TouchableOpacity style={{marginLeft: SIZES.padding}}>
+    <TouchableOpacity
+      style={{marginLeft: SIZES.padding}}
+      onPress={() => navigation.navigate('ItemDetail', {iteminfo: item})}>
       <View style={{width: SIZES.width / 2}}>
         <Image
           source={item.image}
@@ -273,6 +275,73 @@ const Home = ({navigation}) => {
     );
   }
 
+  function renderPromotionCard() {
+    return (
+      <View
+        style={[
+          styles.shadow,
+          {
+            flexDirection: 'row',
+            marginHorizontal: SIZES.padding,
+            padding: SIZES.radius,
+            height: 110,
+            borderRadius: 20,
+            backgroundColor: COLORS.white,
+          },
+        ]}>
+        <View
+          style={{
+            width: 50,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: COLORS.lightGray2,
+            borderRadius: 20,
+          }}>
+          <Image
+            source={images.sofa}
+            resizeMode="contain"
+            style={{width: '60%', height: '60%'}}
+          />
+        </View>
+
+        {/* Wordings section */}
+        <View
+          style={{flex: 1, marginLeft: SIZES.radius, justifyContent: 'center'}}>
+          <Text style={{...FONTS.h2}}>Special Offer</Text>
+          <Text style={{...FONTS.body3}}>Adding to your cart</Text>
+        </View>
+
+        {/* Button */}
+        <View
+          style={{
+            marginRight: SIZES.radius,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <TouchableOpacity
+            style={{
+              backgroundColor: COLORS.primary,
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '70%',
+              width: 40,
+              borderRadius: 10,
+            }}
+            onPress={() => console.log('Promo on clicked')}>
+            <Image
+              source={icons.chevron}
+              resizeMode="contain"
+              style={{
+                height: '50%',
+                width: '50%',
+              }}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       {renderHeader()}
@@ -292,7 +361,9 @@ const Home = ({navigation}) => {
       </View>
 
       {/* Footer - promotion card */}
-      <View style={{height: '19%'}}></View>
+      <View style={{height: '19%', justifyContent: 'flex-end'}}>
+        {renderPromotionCard()}
+      </View>
     </SafeAreaView>
   );
 };
