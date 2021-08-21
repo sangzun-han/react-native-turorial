@@ -8,11 +8,24 @@ import {
   TouchableOpacity,
   Image,
   ImageBackground,
+  LogBox,
 } from 'react-native';
 
 import {dummyData, COLORS, SIZES, FONTS, icons, images} from '../constants';
+import {PriceAlert, TransactionHistory} from '../components';
+import {useEffect} from 'react/cjs/react.development';
+
 const Home = ({navigation}) => {
   const [trending, setTrending] = useState(dummyData.trendingCurrencies);
+
+  const [transactionHistory, setTransactionHistory] = useState(
+    dummyData.transactionHistory,
+  );
+
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, []);
+
   function renderHeader() {
     const renderItem = ({item, index}) => (
       <TouchableOpacity
@@ -167,6 +180,55 @@ const Home = ({navigation}) => {
     );
   }
 
+  function renderAlert() {
+    return <PriceAlert />;
+  }
+
+  function renderNotice() {
+    return (
+      <View
+        style={{
+          marginTop: SIZES.padding,
+          marginHorizontal: SIZES.padding,
+          padding: 20,
+          borderRadius: SIZES.radius,
+          backgroundColor: COLORS.secondary,
+          ...styles.shadow,
+        }}>
+        <Text style={{color: COLORS.white, ...FONTS.h3}}>Investing Safety</Text>
+        <Text
+          style={{marginTop: SIZES.base, color: COLORS.white, ...FONTS.body4}}>
+          It's very difficult to time an investment, especially when the market
+          is volatile. Learn how to use dollar cost averaging to your advantage
+        </Text>
+
+        <TouchableOpacity
+          style={{
+            marginTop: SIZES.base,
+          }}
+          onPress={() => console.log('Learn More')}>
+          <Text
+            style={{
+              textDecorationLine: 'underline',
+              color: COLORS.green,
+              ...FONTS.h3,
+            }}>
+            Learn More
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  function renderTransactionHistory() {
+    return (
+      <TransactionHistory
+        customContainerStyle={{...styles.shadow}}
+        history={transactionHistory}
+      />
+    );
+  }
+
   return (
     <ScrollView>
       <View
@@ -175,6 +237,9 @@ const Home = ({navigation}) => {
           paddingBottom: 130,
         }}>
         {renderHeader()}
+        {renderAlert()}
+        {renderNotice()}
+        {renderTransactionHistory()}
       </View>
     </ScrollView>
   );
