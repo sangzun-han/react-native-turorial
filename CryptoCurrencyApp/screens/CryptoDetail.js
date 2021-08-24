@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   SafeAreaView,
@@ -10,11 +10,148 @@ import {
   Animated,
 } from 'react-native';
 
-import {HeaderBar} from '../components';
+import {
+  VictoryScatter,
+  VictoryLine,
+  VictoryChart,
+  VictoryAxis,
+} from 'victory-native';
+import {VictoryCustomTheme} from '../styles';
+
+import {useEffect} from 'react/cjs/react.development';
+
+import {HeaderBar, CurrencyLabel} from '../components';
 
 import {dummyData, COLORS, SIZES, FONTS, icons} from '../constants';
 
-const CryptoDetail = ({navigation}) => {
+const CryptoDetail = ({route, navigation}) => {
+  const scrollX = new Animated.Value(0);
+  const numberofCharts = [1, 2, 3];
+
+  const [selectedCurrency, setSelectedCurrency] = useState(null);
+
+  useEffect(() => {
+    const {currency} = route.params;
+    setSelectedCurrency(currency);
+  }, []);
+
+  function renderChart() {
+    return (
+      <View
+        style={{
+          marginTop: SIZES.padding,
+          marginHorizontal: SIZES.radius,
+          alignItems: 'center',
+          borderRadius: SIZES.radius,
+          backgroundColor: COLORS.white,
+          ...styles.shadow,
+        }}>
+        {/* header */}
+        <View
+          style={{
+            flexDirection: 'row',
+            marginTop: SIZES.padding,
+            paddingHorizontal: SIZES.padding,
+          }}>
+          <View style={{flex: 1}}>
+            <CurrencyLabel
+              icon={selectedCurrency?.image}
+              currency={selectedCurrency?.currency}
+              code={selectedCurrency?.code}
+            />
+          </View>
+          <View>
+            <Text style={{...FONTS.h3}}>${selectedCurrency?.amount}</Text>
+            <Text
+              style={{
+                color:
+                  selectedCurrency?.type == '1' ? COLORS.green : COLORS.red,
+                ...FONTS.body3,
+              }}>
+              {selectedCurrency?.changes}
+            </Text>
+          </View>
+        </View>
+        {/* chart */}
+        <Animated.ScrollView
+          horizontal
+          pagingEnabled
+          scrollEventThrottle={16}
+          snapToAlignment="center"
+          snapToInterval={SIZES.width - 40}
+          showsHorizontalScrollIndicator={false}
+          decelerationRate={0}
+          onScroll={Animated.event(
+            [{nativeEvent: {contentOffset: {x: scrollX}}}],
+            {useNativeDriver: false},
+          )}>
+          {numberofCharts.map((item, index) => (
+            <View
+              key={`chart-${index}`}
+              style={{
+                marginLeft: index == 0 ? SIZES.base : 0,
+              }}>
+              <View
+                style={{
+                  marginTop: -25,
+                }}>
+                <VictoryChart
+                  theme={VictoryCustomTheme}
+                  height={220}
+                  width={SIZES.width - 40}>
+                  <VictoryLine
+                    style={{
+                      data: {
+                        stroke: COLORS.secondary,
+                      },
+                      parent: {
+                        border: '1px solid #ccc',
+                      },
+                    }}
+                    data={selectedCurrency?.chartData}
+                    categories={{
+                      x: ['15 MIN', '30 MIN', '45 MIN', '60 MIN'],
+                      y: ['15', '30', '45'],
+                    }}
+                  />
+                  <VictoryScatter
+                    data={selectedCurrency?.chartData}
+                    size={7}
+                    style={{
+                      data: {
+                        fill: COLORS.secondary,
+                      },
+                    }}
+                  />
+                  <VictoryAxis
+                    style={{
+                      grid: {
+                        stroke: 'transparent',
+                      },
+                    }}
+                  />
+                  <VictoryAxis
+                    dependentAxis
+                    style={{
+                      axis: {
+                        stroke: 'transparent',
+                      },
+                      grid: {
+                        stroke: 'grey',
+                      },
+                    }}
+                  />
+                </VictoryChart>
+              </View>
+            </View>
+          ))}
+        </Animated.ScrollView>
+        {/* options */}
+        {/* dots */}
+      </View>
+    );
+  }
+
   return (
     <SafeAreaView
       style={{
@@ -22,6 +159,15 @@ const CryptoDetail = ({navigation}) => {
         backgroundColor: COLORS.lightGray,
       }}>
       <HeaderBar right={true} />
+      <ScrollView>
+        <View
+          style={{
+            flex: 1,
+            paddingBottom: SIZES.padding,
+          }}>
+          {renderChart()}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
