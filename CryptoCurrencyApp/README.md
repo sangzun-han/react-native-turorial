@@ -1,7 +1,9 @@
 ## 참고자료
 
 ## 실행화면
-<img src=""/>
+
+![img](https://user-images.githubusercontent.com/57563053/131315601-f0db3dd9-f386-4a66-bb35-5a459f5019fe.gif)
+
 ## 오류해결
 
 ```
